@@ -54,10 +54,10 @@
     <form method = "POST" action="<?php $_SERVER["PHP_SELF"] ?>" onsubmit="return validate();">
 
        <label>Test ID: </label>
-       <input placeholder = "Enter your ID" type="text" id = "id" name = "id"/>
+       <input placeholder = "Enter your ID" type="text" id = "id" name = "id" required>
        <br>
        <label>Test Name: </label>
-       <input placeholder = "Enter your name" type="text" id = "name" name = "name"/>
+       <input placeholder = "Enter your name" type="text" id = "name" name = "name" required>
        <br>
        <input type = "submit" name = "sub" id = "sub" value = "Enter"/>
      </form>
