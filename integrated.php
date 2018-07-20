@@ -34,6 +34,22 @@
       // echo "</table>";
 
     }
+    function insert(){
+      $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
+
+      $name = $_POST['name'];
+      $id = $_POST['id'];
+      // printf("your name is %s and your id is %d\n", $name, $id);
+      // echo "<br>";
+      if(!mysqli_query($conn, "INSERT INTO test (idtest, testname) VALUES ($id, '$name')")){
+        printf("query didn't work");
+
+      }
+      else{
+        // printf("query worked");
+      }
+
+    }
     ?>
 
     <script>
@@ -46,6 +62,7 @@
         alert("Enter a Name");
         return false
       }
+       var padd = <?php echo insert();?>; // call function to insert value
 
       return true;
     }
@@ -54,10 +71,10 @@
     <form method = "POST" action="<?php $_SERVER["PHP_SELF"] ?>" onsubmit="return validate();">
 
        <label>Test ID: </label>
-       <input placeholder = "Enter your ID" type="text" id = "id" name = "id" required>
+       <input placeholder = "Enter your ID" type="text" id = "id" name = "id" >
        <br>
        <label>Test Name: </label>
-       <input placeholder = "Enter your name" type="text" id = "name" name = "name" required>
+       <input placeholder = "Enter your name" type="text" id = "name" name = "name" >
        <br>
        <input type = "submit" name = "sub" id = "sub" value = "Enter"/>
      </form>
@@ -72,19 +89,19 @@
 
      }
 
-     if($_POST){
-       $name = $_POST['name'];
-       $id = $_POST['id'];
-       // printf("your name is %s and your id is %d\n", $name, $id);
-       // echo "<br>";
-       if(!mysqli_query($conn, "INSERT INTO test (idtest, testname) VALUES ($id, '$name')")){
-         printf("query didn't work");
-
-       }
-       else{
-         // printf("query worked");
-       }
-     }
+     // if($_POST){
+     //   $name = $_POST['name'];
+     //   $id = $_POST['id'];
+     //   // printf("your name is %s and your id is %d\n", $name, $id);
+     //   // echo "<br>";
+     //   if(!mysqli_query($conn, "INSERT INTO test (idtest, testname) VALUES ($id, '$name')")){
+     //     printf("query didn't work");
+     //
+     //   }
+     //   else{
+     //     // printf("query worked");
+     //   }
+     // }
 
      // display();
      $query = "SELECT * FROM test";

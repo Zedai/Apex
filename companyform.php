@@ -78,9 +78,13 @@
       //   return false
       // }
       alert('test');
-      var ins= <?php echo insert();?>;
-      alert(ins);
-      return true;
+      if(document.getElementById("name").value && document.getElementById("date").value){
+        var padd = "<?php echo insert();?>"; // call function to insert value0
+        return true;
+      }
+      else {
+        return false;
+      }
 
     }
     </script>
@@ -90,7 +94,7 @@
       <fieldset>
         <legend>Company Entry:</legend>
        <label>Company Name: </label>
-       <input placeholder = "Enter the name of your comapny..." type="text" id = "name" name = "name" maxlength="90" >
+       <input placeholder = "Enter the name of your comapny..." type="text" id = "name" name = "name" maxlength="90" required>
        <br>
        <label>Company Type: </label>
        <select name="Type" required>
@@ -100,7 +104,7 @@
         <option value="public">public</option>
        </select>
        <label>Date Opened: </label>
-       <input type="date" name="date" >
+       <input type="date" name="date" required>
        <br>
        <label>Company Description: </label>
        <textarea placeholder = "What does your company do?" type="text" id = "desc" name="desc" maxlength="200" onkeypress="keyCount()"></textarea>
