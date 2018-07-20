@@ -12,6 +12,15 @@
   <body>
 
     <?php
+    $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
+    if(!$conn){
+         echo("Connection Error");
+    }
+    else{
+      // =echo "CONNECTED<br>";
+
+    }
+
     function display(){
       // $query = "SELECT * FROM test";
       // $result = mysqli_query($conn, $query);
@@ -34,27 +43,54 @@
       // echo "</table>";
 
     }
+
+    function insert(){
+      $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
+
+      $name = $_POST['name'];
+      $type = $_POST['Type'];
+      $date = $_POST['date'];
+      $desc = $_POST['desc'];
+      // $_POST = NULL;
+      // printf("your name is %s and your id is %d\n", $name, $id);
+      // echo "<br>";
+      if(!mysqli_query($conn, "INSERT INTO company (companyname, company_type, date_opened, company_desc) VALUES ('$name', '$type', '$date', '$desc')")){
+        printf("query didn't work");
+        echo"<br>";
+        echo("Error description: " . mysqli_error($conn));
+      }
+      else{
+        // printf("query worked");
+      }
+
+
+    }
     ?>
 
     <script>
     function validate() {
-      if(!document.getElementById('id').value){
-        alert("Enter an ID");
-        return false;
-      }
-      if(!document.getElementById('name').value){
-        alert("Enter a Name");
-        return false
-      }
-
+      // if(!document.getElementById('id').value){
+      //   alert("Enter an ID");
+      //   return false;
+      // }
+      // if(!document.getElementById('name').value){
+      //   alert("Enter a Name");
+      //   return false
+      // }
+      alert('test');
+      var ins= <?php echo insert();?>;
+      alert(ins);
       return true;
+
     }
     </script>
+
     <!-- <var>count</var> = 200; -->
     <form method = "POST" action="<?php $_SERVER["PHP_SELF"] ?>" onsubmit="return validate();">
-
+      <fieldset>
+        <legend>Company Entry:</legend>
        <label>Company Name: </label>
-       <input placeholder = "Enter the name of your comapny..." type="text" id = "name" name = "name" maxlength="90" required>
+       <input placeholder = "Enter the name of your comapny..." type="text" id = "name" name = "name" maxlength="90" >
        <br>
        <label>Company Type: </label>
        <select name="Type" required>
@@ -64,13 +100,14 @@
         <option value="public">public</option>
        </select>
        <label>Date Opened: </label>
-       <input type="date" name="date" required>
+       <input type="date" name="date" >
        <br>
        <label>Company Description: </label>
        <textarea placeholder = "What does your company do?" type="text" id = "desc" name="desc" maxlength="200" onkeypress="keyCount()"></textarea>
        <br>
        <p id="insert"></p>
        <input type = "submit" name = "sub" id = "sub" value = "Enter"/>
+     </fieldset>
      </form>
 
      <script>
@@ -82,33 +119,25 @@
      </script>
      <?php
 
-     $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
-     if(!$conn){
-          echo("Connection Error");
-     }
-     else{
-       // echo "CONNECTED<br>";
 
-     }
-
-     if($_POST){
-       $name = $_POST['name'];
-       $type = $_POST['Type'];
-       $date = $_POST['date'];
-       $desc = $_POST['desc'];
-       // $_POST = NULL;
-       // printf("your name is %s and your id is %d\n", $name, $id);
-       // echo "<br>";
-       if(!mysqli_query($conn, "INSERT INTO company (companyname, company_type, date_opened, company_desc) VALUES ('$name', '$type', '$date', '$desc')")){
-         printf("query didn't work");
-         echo"<br>";
-         echo("Error description: " . mysqli_error($conn));
-       }
-       else{
-         // printf("query worked");
-       }
-
-     }
+     // if($_POST){
+     //   $name = $_POST['name'];
+     //   $type = $_POST['Type'];
+     //   $date = $_POST['date'];
+     //   $desc = $_POST['desc'];
+     //   // $_POST = NULL;
+     //   // printf("your name is %s and your id is %d\n", $name, $id);
+     //   // echo "<br>";
+     //   if(!mysqli_query($conn, "INSERT INTO company (companyname, company_type, date_opened, company_desc) VALUES ('$name', '$type', '$date', '$desc')")){
+     //     printf("query didn't work");
+     //     echo"<br>";
+     //     echo("Error description: " . mysqli_error($conn));
+     //   }
+     //   else{
+     //     // printf("query worked");
+     //   }
+     //
+     // }
 
      // display();
      $query = "SELECT * FROM company";
@@ -145,4 +174,7 @@
         mysqli_close($conn);
      ?>
   </body>
+  <footer align="center">
+    <font color="gray">Saikiran Nakka</font>
+  </footer>
 </html>
