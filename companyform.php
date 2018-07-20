@@ -67,7 +67,7 @@
        <input type="date" name="date" required>
        <br>
        <label>Company Description: </label>
-       <textarea placeholder = "What does your company do?" type="text" id = "desc" name="desc" maxlength="200" onkeyup="javascript:keyCount()"></textarea>
+       <textarea placeholder = "What does your company do?" type="text" id = "desc" name="desc" maxlength="200" onkeypress="keyCount()"></textarea>
        <br>
        <p id="insert"></p>
        <input type = "submit" name = "sub" id = "sub" value = "Enter"/>
