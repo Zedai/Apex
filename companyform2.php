@@ -11,94 +11,8 @@
 
   <body>
 
-    <?php
-    $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
-    if(!$conn){
-         echo("Connection Error");
-    }
-    else{
-      // =echo "CONNECTED<br>";
-
-    }
-
-    function display(){
-      // $query = "SELECT * FROM test";
-      // $result = mysqli_query($conn, $query);
-      // echo "<table style='width:100%'>";
-      //
-      // echo "<tr>";
-      // echo "<th>ID</th>";
-      // echo "<th>NAME</th>";
-      // echo "</tr>";
-      // while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-      //   echo "<tr>";
-      //   echo "<td>";
-      //   echo $row["idtest"];
-      //   echo "</td>";
-      //   echo "<td>";
-      //   echo $row["testname"];
-      //   echo "</td>";
-      //   echo "</tr>";
-      // }
-      // echo "</table>";
-
-    }
-
-    function insert(){
-      $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
-
-      $name = $_POST['name'];
-      $type = $_POST['Type'];
-      $date = $_POST['date'];
-      $desc = $_POST['desc'];
-      // document.getElementById("form").reset();
-
-      // var frm=document.getElementByID('form');
-      // frm.reset();
-
-      // $_POST = NULL;
-      // printf("your name is %s and your id is %d\n", $name, $id);
-      // echo "<br>";
-      if(!mysqli_query($conn, "INSERT INTO company (companyname, company_type, date_opened, company_desc) VALUES ('$name', '$type', '$date', '$desc')")){
-        printf("query didn't work");
-        echo"<br>";
-        echo("Error description: " . mysqli_error($conn));
-      }
-      else{
-        // printf("query worked");
-        // header("Location: companyform.php");
-        // exit;
-        // die;
-      }
-
-
-    }
-    ?>
-
-    <script>
-    function validate() {
-      // if(!document.getElementById('id').value){
-      //   alert("Enter an ID");
-      //   return false;
-      // }
-      // if(!document.getElementById('name').value){
-      //   alert("Enter a Name");
-      //   return false
-      // }
-      alert('test');
-      if(document.getElementById("name").value && document.getElementById("date").value){
-        var padd = "<?php echo insert();?>"; // call function to insert value0
-        return true;
-      }
-      else {
-        return false;
-      }
-
-    }
-    </script>
-
     <!-- <var>count</var> = 200; -->
-    <form id = 'form' method = "POST" action="<?php $_SERVER["PHP_SELF"] ?>" onsubmit="return validate();">
+    <form method = "POST" action="redirect.php" >
       <fieldset>
         <legend>Company Entry:</legend>
        <label>Company Name: </label>
@@ -129,6 +43,7 @@
         document.getElementById("insert").innerHTML = count + " characters left";
       }
      </script>
+
      <?php
 
 
@@ -152,6 +67,10 @@
      // }
 
      // display();
+
+
+     $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
+
      $query = "SELECT * FROM company";
      $result = mysqli_query($conn, $query);
      echo "<table style='width:100%'>";
@@ -180,9 +99,6 @@
      }
      echo "</table>";
 
-
-     ?>
-     <?php
         mysqli_close($conn);
      ?>
   </body>
