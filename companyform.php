@@ -12,83 +12,35 @@
   <body>
 
     <?php
-    require(companyfunct.php);
-    $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
-    if(!$conn){
-         echo("Connection Error");
-    }
-    else{
-      // =echo "CONNECTED<br>";
-
-    }
-
-    function display(){
-      // $query = "SELECT * FROM test";
-      // $result = mysqli_query($conn, $query);
-      // echo "<table style='width:100%'>";
-      //
-      // echo "<tr>";
-      // echo "<th>ID</th>";
-      // echo "<th>NAME</th>";
-      // echo "</tr>";
-      // while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-      //   echo "<tr>";
-      //   echo "<td>";
-      //   echo $row["idtest"];
-      //   echo "</td>";
-      //   echo "<td>";
-      //   echo $row["testname"];
-      //   echo "</td>";
-      //   echo "</tr>";
-      // }
-      // echo "</table>";
-
-    }
-
-    // function insert(){
-    //   $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
-    //
-    //   $name = $_POST['name'];
-    //   $type = $_POST['Type'];
-    //   $date = $_POST['date'];
-    //   $desc = $_POST['desc'];
-    //   // document.getElementById("form").reset();
-    //
-    //   // var frm=document.getElementByID('form');
-    //   // frm.reset();
-    //
-    //   // $_POST = NULL;
-    //   // printf("your name is %s and your id is %d\n", $name, $id);
-    //   // echo "<br>";
-    //   if(!mysqli_query($conn, "INSERT INTO company (companyname, company_type, date_opened, company_desc) VALUES ('$name', '$type', '$date', '$desc')")){
-    //     printf("query didn't work");
-    //     echo"<br>";
-    //     echo("Error description: " . mysqli_error($conn));
-    //   }
-    //   else{
-    //     // printf("query worked");
-    //     // header("Location: companyform.php");
-    //     // exit;
-    //     // die;
-    //   }
-    //
+    include("companyfunct.php");
+    include("db_connect.php");
+    // echo test();
+    // $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
+    // if(!$conn){
+    //      echo("Connection Error");
+    // }
+    // else{
+    //   // =echo "CONNECTED<br>";
     //
     // }
+
     ?>
 
     <script>
     function validate() {
-      // if(!document.getElementById('id').value){
-      //   alert("Enter an ID");
-      //   return false;
-      // }
-      // if(!document.getElementById('name').value){
-      //   alert("Enter a Name");
-      //   return false
-      // }
-      alert('test');
+      // alert('test');
       if(document.getElementById("name").value && document.getElementById("date").value){
-        var padd = "<?php echo insert();?>"; // call function to insert value0
+        // var name = document.getElementById('name').value;
+        // var type = document.getElementById('type').value;
+        // var date = document.getElementById('date').value;
+        // var desc = document.getElementById('desc').value;
+        <?php
+            $name = $_POST['name'];
+             $type = $_POST['Type'];
+             $date = $_POST['date'];
+             $desc = $_POST['desc'];
+         ?>
+        var padd = "<?php echo insert($name, $type, $date, $desc);?>"; // call function to insert value0
         return true;
       }
       else {
@@ -106,13 +58,13 @@
        <input placeholder = "Enter the name of your comapny..." type="text" id = "name" name = "name" maxlength="90" required>
        <br>
        <label>Company Type: </label>
-       <select name="Type" required>
+       <select id = "type" name="Type" required>
         <!-- <option value="corp">corp</option>
         <option value="s-corp">s-corp</option>
         <option value="private">private</option>
         <option value="public">public</option> -->
         <?php
-        $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
+        // $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
 
         $query = "SELECT * FROM look_values";
         $result = mysqli_query($conn, $query);
@@ -123,7 +75,7 @@
          ?>
        </select>
        <label>Date Opened: </label>
-       <input type="date" name="date" required>
+       <input type="date" id = "date" name="date" required>
        <br>
        <label>Company Description: </label>
        <textarea placeholder = "What does your company do?" type="text" id = "desc" name="desc" maxlength="200" onkeypress="keyCount()"></textarea>
@@ -163,6 +115,7 @@
      // }
 
      // display();
+
      $query = "SELECT * FROM company";
      $result = mysqli_query($conn, $query);
      echo "<table style='width:100%'>";
