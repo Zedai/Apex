@@ -39,6 +39,10 @@
              $type = $_POST['Type'];
              $date = $_POST['date'];
              $desc = $_POST['desc'];
+             if($name = "")
+              $name = null;
+             if($type = "")
+              $type = null;
          ?>
         var padd = "<?php echo insert($name, $type, $date, $desc);?>"; // call function to insert value0
         return true;
