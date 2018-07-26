@@ -20,10 +20,20 @@
        <br>
        <label>Company Type: </label>
        <select name="Type" required>
-        <option value="corp">corp</option>
+        <!-- <option value="corp">corp</option>
         <option value="s-corp">s-corp</option>
         <option value="private">private</option>
-        <option value="public">public</option>
+        <option value="public">public</option> -->
+        <?php
+        $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
+
+        $query = "SELECT * FROM look_values";
+        $result = mysqli_query($conn, $query);
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+          $field = $row['look_values'];
+          echo "<option>$field</option>";
+        }
+         ?>
        </select>
        <label>Date Opened: </label>
        <input type="date" name="date" required>
@@ -69,7 +79,6 @@
      // display();
 
 
-     $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
 
      $query = "SELECT * FROM company";
      $result = mysqli_query($conn, $query);

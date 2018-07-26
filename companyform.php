@@ -12,6 +12,7 @@
   <body>
 
     <?php
+    require(companyfunct.php);
     $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
     if(!$conn){
          echo("Connection Error");
@@ -44,35 +45,35 @@
 
     }
 
-    function insert(){
-      $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
-
-      $name = $_POST['name'];
-      $type = $_POST['Type'];
-      $date = $_POST['date'];
-      $desc = $_POST['desc'];
-      // document.getElementById("form").reset();
-
-      // var frm=document.getElementByID('form');
-      // frm.reset();
-
-      // $_POST = NULL;
-      // printf("your name is %s and your id is %d\n", $name, $id);
-      // echo "<br>";
-      if(!mysqli_query($conn, "INSERT INTO company (companyname, company_type, date_opened, company_desc) VALUES ('$name', '$type', '$date', '$desc')")){
-        printf("query didn't work");
-        echo"<br>";
-        echo("Error description: " . mysqli_error($conn));
-      }
-      else{
-        // printf("query worked");
-        // header("Location: companyform.php");
-        // exit;
-        // die;
-      }
-
-
-    }
+    // function insert(){
+    //   $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
+    //
+    //   $name = $_POST['name'];
+    //   $type = $_POST['Type'];
+    //   $date = $_POST['date'];
+    //   $desc = $_POST['desc'];
+    //   // document.getElementById("form").reset();
+    //
+    //   // var frm=document.getElementByID('form');
+    //   // frm.reset();
+    //
+    //   // $_POST = NULL;
+    //   // printf("your name is %s and your id is %d\n", $name, $id);
+    //   // echo "<br>";
+    //   if(!mysqli_query($conn, "INSERT INTO company (companyname, company_type, date_opened, company_desc) VALUES ('$name', '$type', '$date', '$desc')")){
+    //     printf("query didn't work");
+    //     echo"<br>";
+    //     echo("Error description: " . mysqli_error($conn));
+    //   }
+    //   else{
+    //     // printf("query worked");
+    //     // header("Location: companyform.php");
+    //     // exit;
+    //     // die;
+    //   }
+    //
+    //
+    // }
     ?>
 
     <script>
@@ -106,10 +107,20 @@
        <br>
        <label>Company Type: </label>
        <select name="Type" required>
-        <option value="corp">corp</option>
+        <!-- <option value="corp">corp</option>
         <option value="s-corp">s-corp</option>
         <option value="private">private</option>
-        <option value="public">public</option>
+        <option value="public">public</option> -->
+        <?php
+        $conn = mysqli_connect('dev04.apextsi.com', 'saikiran', 'sai@04', 'saikiran');
+
+        $query = "SELECT * FROM look_values";
+        $result = mysqli_query($conn, $query);
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+          $field = $row['look_values'];
+          echo "<option>$field</option>";
+        }
+         ?>
        </select>
        <label>Date Opened: </label>
        <input type="date" name="date" required>
