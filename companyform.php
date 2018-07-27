@@ -59,7 +59,7 @@
       <fieldset>
         <legend>Company Entry:</legend>
        <label>Company Name: </label>
-       <input placeholder = "Enter the name of your comapny..." type="text" id = "name" name = "name" maxlength="90" required>
+       <input placeholder = "Enter the name of your comapny..." type="text" id = "name" name = "name" maxlength="90" require>
        <br>
        <label>Company Type: </label>
        <select id = "type" name="Type" required>
