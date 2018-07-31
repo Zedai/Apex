@@ -39,12 +39,13 @@
              $type = $_POST['Type'];
              $date = $_POST['date'];
              $desc = $_POST['desc'];
+             $d_0 = $_POST['d0'];
              if($name = "")
               $name = null;
              if($type = "")
               $type = null;
          ?>
-        var padd = "<?php echo insert($name, $type, $date, $desc);?>"; // call function to insert value0
+        var padd = "<?php compInsert($name, $type, $date, $desc, $d_0);?>"; // call function to insert value0
         return true;
       }
       else {
@@ -59,7 +60,7 @@
       <fieldset>
         <legend>Company Entry:</legend>
        <label>Company Name: </label>
-       <input placeholder = "Enter the name of your comapny..." type="text" id = "name" name = "name" maxlength="90" require>
+       <input placeholder = "Enter the name of your comapny..." type="text" id = "name" name = "name" maxlength="90" required>
        <br>
        <label>Company Type: </label>
        <select id = "type" name="Type" required>
@@ -85,8 +86,16 @@
        <textarea placeholder = "What does your company do?" type="text" id = "desc" name="desc" maxlength="200" onkeypress="keyCount()"></textarea>
        <br>
        <p id="insert"></p>
+       <!-- <fieldset>
+          <legend>Departments:</legend> -->
+          <input type = "text" name = "d0" id = "d0"> <br>
+          <!-- <input type = "text" id = "d_1"> <br>
+          <input type = "text" id = "d_2"> <br>
+          <input type = "text" id = "d_3"> -->
+       <!-- </fieldset> -->
        <input type = "submit" name = "sub" id = "sub" value = "Enter"/>
      </fieldset>
+
      </form>
 
      <script>

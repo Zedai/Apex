@@ -1,7 +1,7 @@
 <html>
 <div class="departments">
 <button class="add_field">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
-<div><input type="text" id = "t" name="mytext[]"></div>
+<div><input type="text" id = "t_0" name="mytext[]"></div>
 </div>
 <form>
 <input type = "button" id = "disp" onclick"display()" value= "Display">
@@ -13,11 +13,12 @@
 // $(document).ready(function() {
     var wrapper         = $(".departments");
     var add_button      = $(".add_field");
-
+    var x = 1;
     $(add_button).click(
       function(e){
         e.preventDefault();
-            $(wrapper).append('<div><input type="text" id = "t" name="mytext[]"/><a href="#" class="delete">Delete</a></div>'); //add input box
+        x++;
+            $(wrapper).append('<div><input type="text" id = "t_1" name="mytext[]"/><a href="#" class="delete">Delete</a></div>'); //add input box
     }
   );
 
@@ -25,12 +26,18 @@
     function(e){
         e.preventDefault();
         $(this).parent('div').remove();
+          x--;
     }
   );
 
   document.getElementById("disp").onclick = display;
   function display(){
-    alert(document.getElementById("t").value);
+    // var string = "";
+    // var i;
+    // for(i = 0; i < 2; i++)
+    //   string += document.getElementById("t_'+i+'").value + " ";
+    var string = "";
+    alert(document.getElementById("t_1").value);
   };
 
   // document.write()
