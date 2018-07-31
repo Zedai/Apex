@@ -19,7 +19,7 @@ function compInsert($name, $type, $date, $desc, $d_0){
       }
 
       $id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM company WHERE companyname = '$name'"))['idcompany'];
-      if(""+mysqli_num_rows(mysqli_query($conn, "SELECT * FROM company_dept WHERE idcompany = '$id' AND department = '$d_0'")) == "0")
+      if(""+mysqli_num_rows(mysqli_query($conn, "SELECT * FROM company_dept WHERE idcompany = '$id' AND department = '$d_0'")) == "0" && !($d_0 == null || $d_0 = ""))
         mysqli_query($conn, "INSERT INTO company_dept (idcompany, department) VALUES ('$id', '$d_0')");
     }
 }

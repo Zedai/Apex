@@ -40,10 +40,10 @@
              $date = $_POST['date'];
              $desc = $_POST['desc'];
              $d_0 = $_POST['d0'];
-             if($name = "")
-              $name = null;
-             if($type = "")
-              $type = null;
+             // if($name = "")
+             //  $name = null;
+             // if($type = "")
+             //  $type = null;
          ?>
         var padd = "<?php compInsert($name, $type, $date, $desc, $d_0);?>"; // call function to insert value0
         return true;
@@ -86,13 +86,13 @@
        <textarea placeholder = "What does your company do?" type="text" id = "desc" name="desc" maxlength="200" onkeypress="keyCount()"></textarea>
        <br>
        <p id="insert"></p>
-       <!-- <fieldset>
-          <legend>Departments:</legend> -->
+       <fieldset>
+          <legend>Departments:</legend>
           <input type = "text" name = "d0" id = "d0"> <br>
           <!-- <input type = "text" id = "d_1"> <br>
           <input type = "text" id = "d_2"> <br>
           <input type = "text" id = "d_3"> -->
-       <!-- </fieldset> -->
+       </fieldset>
        <input type = "submit" name = "sub" id = "sub" value = "Enter"/>
      </fieldset>
 
