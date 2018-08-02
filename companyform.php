@@ -53,6 +53,14 @@
       }
 
     }
+
+    function alertTest(){
+      alert('it works');
+    }
+
+    function add(){
+      document.write("<input type = 'text' form = 'form' name = 'd0' id = 'd0'> <br>");
+    }
     </script>
 
     <!-- <var>count</var> = 200; -->
@@ -60,7 +68,7 @@
       <fieldset>
         <legend>Company Entry:</legend>
        <label>Company Name: </label>
-       <input placeholder = "Enter the name of your comapny..." type="text" id = "name" name = "name" maxlength="90" required>
+       <input placeholder = "Enter the name of your company..." type="text" id = "name" name = "name" maxlength="90" required>
        <br>
        <label>Company Type: </label>
        <select id = "type" name="Type" required>
@@ -92,6 +100,7 @@
           <!-- <input type = "text" id = "d_1"> <br>
           <input type = "text" id = "d_2"> <br>
           <input type = "text" id = "d_3"> -->
+          <button type = "button" id = 'new' onclick="add()">Add</button>
        </fieldset>
        <input type = "submit" name = "sub" id = "sub" value = "Enter"/>
      </fieldset>
