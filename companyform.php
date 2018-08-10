@@ -39,13 +39,13 @@
              $type = $_POST['Type'];
              $date = $_POST['date'];
              $desc = $_POST['desc'];
-             $d_0 = $_POST['d0'];
+             $d = $_POST['d'];
              // if($name = "")
              //  $name = null;
              // if($type = "")
              //  $type = null;
          ?>
-        var padd = "<?php compInsert($name, $type, $date, $desc, $d_0);?>"; // call function to insert value0
+        var padd = "<?php compInsert($name, $type, $date, $desc, $d);?>"; // call function to insert value0
         return true;
       }
       else {
@@ -58,9 +58,6 @@
       alert('it works');
     }
 
-    function add(){
-      document.write("<input type = 'text' form = 'form' name = 'd0' id = 'd0'> <br>");
-    }
     </script>
 
     <!-- <var>count</var> = 200; -->
@@ -94,25 +91,62 @@
        <textarea placeholder = "What does your company do?" type="text" id = "desc" name="desc" maxlength="200" onkeypress="keyCount()"></textarea>
        <br>
        <p id="insert"></p>
-       <fieldset>
+       <fieldset id = "d[]" name = "d[]">
           <legend>Departments:</legend>
-          <input type = "text" name = "d0" id = "d0"> <br>
+          <input type = "text" name = "d[]" id = "d[]" placeholder = "Department 0"> <br>
+          <p id="newdept"></p>
           <!-- <input type = "text" id = "d_1"> <br>
           <input type = "text" id = "d_2"> <br>
           <input type = "text" id = "d_3"> -->
           <button type = "button" id = 'new' onclick="add()">Add</button>
+          <p id="remove"></p>
        </fieldset>
        <input type = "submit" name = "sub" id = "sub" value = "Enter"/>
      </fieldset>
 
      </form>
 
+
      <script>
-      function keyCount(){
+     var dept = 1;
+     var remove_html = "<button type = 'button' id = 'del' onclick='remove()''>Remove</button>";
+     function add(){
+       // document.write("<input type = 'text' form = 'form' name = 'd0' id = 'd0'> <br>");
+       // var id = "d[" + dept + "]";
+       // var html = "<input type = 'text' name = '" + id +"' id = '" +id+"' placeholder = 'Department " + dept+"'> <br>";
+       var html = "<input type = 'text' name = 'd[]' id = 'd[]' placeholder = 'Department " + dept+"'> <br>";
+       document.getElementById("newdept").innerHTML = document.getElementById("newdept").innerHTML + html;
+       dept++;
+
+      check();
+     }
+
+     function remove(){
+       var html = "<input type = 'text' name = 'd[]' id = 'd[]' placeholder = 'Department " + dept+"'> <br>";
+        document.getElementById("newdept").innerHTML = "";
+       var temp = dept;
+       dept = 1;
+
+       for(var i = 2; i<temp;i++){  //i = 2 because dept is for department number placeholders. If dept = 1 that means no fields have beein inserted dynamically.
+         add();
+       }
+
+       check();
+     }
+
+     function check(){
+       if(dept > 1){
+         document.getElementById("remove").innerHTML = remove_html;
+       }
+       else {
+         document.getElementById("remove").innerHTML = "";
+       }
+     }
+    function keyCount(){
         // alert('test');
         var count = 200 - document.getElementById("desc").value.length;
         document.getElementById("insert").innerHTML = count + " characters left";
-      }
+    }
      </script>
      <?php
 

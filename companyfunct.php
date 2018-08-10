@@ -1,10 +1,10 @@
 <?php
 
-function compInsert($name, $type, $date, $desc, $d_0){
+function compInsert($name, $type, $date, $desc, $d){
   // $conn = mysqli_connect('dev04.requireapextsi.com', 'saikiran', 'sai@04', 'saikiran');
   require("db_connect.php");
   if(!($date == "0000-00-00" || ($name == null || $name == ""))){ //weird refresh bug
-      if(""+mysqli_num_rows(mysqli_query($conn, "SELECT * FROM company WHERE companyname = '$name'")) == "0"){
+      if(""+mysqli_num_rows(mysqli_query($conn, "SELECT idcompany FROM company WHERE companyname = '$name'")) == "0"){
         if(!mysqli_query($conn, "INSERT INTO company (companyname, company_type, date_opened, company_desc) VALUES ('$name', '$type', '$date', '$desc')")){
           printf("query didn't work");
           echo"<br>";
@@ -18,10 +18,14 @@ function compInsert($name, $type, $date, $desc, $d_0){
         }
       }
 
-      $id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM company WHERE companyname = '$name'"))['idcompany'];
-      if(""+mysqli_num_rows(mysqli_query($conn, "SELECT * FROM company_dept WHERE idcompany = '$id' AND department = '$d_0'")) == "0" && !($d_0 == null || $d_0 == ""))
-        mysqli_query($conn, "INSERT INTO company_dept (idcompany, department) VALUES ('$id', '$d_0')");
+      $function = mysqli_fetch_assoc(mysqli_query($conn, "SELECT idcompany FROM company WHERE companyname = '$name'"));
+	    $id = $function['idcompany'];
+
+    for($i = 0; $i<count($d);$i++){
+      if(""+mysqli_num_rows(mysqli_query($conn, "SELECT idcompany FROM company_dept WHERE idcompany = '$id' AND department = '$d[$i]'")) == "0" && !($d[$i] == null || $d[$i] == ""))
+        mysqli_query($conn, "INSERT INTO company_dept (idcompany, department) VALUES ('$id', '$d[$i]')");
     }
+  }
 }
 
 function test(){
